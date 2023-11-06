@@ -16,12 +16,6 @@ cities = set(df.City)
 
 print(cities)
 
-def example1plot():
-  df = pd.read_csv(pathname)
-  print(df.columns)
-
-
-example1plot()
   
 
 
