@@ -6,6 +6,7 @@
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
+import bar_chart_race as bcr
 
 
 pathname2 = '/Users/rebecca/Documents/code/appliedpython/project/GlobalLandTemperaturesByMajorCity.csv'
@@ -17,6 +18,7 @@ cities = set(df.City)
 print(cities)
 
   
-
+def Emmet():
+  
 
 
