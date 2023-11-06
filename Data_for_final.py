@@ -12,6 +12,10 @@ pathname = "/Users/emmetshuman/Documents/CC Sophomore Folder/AppliedPY/Final pro
 
 def example1plot():
   df = pd.read_csv(pathname, skiprows =1)
+  print(df.columns)
+
+
+example1plot()
   
 
 
