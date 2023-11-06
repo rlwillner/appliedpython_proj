@@ -10,6 +10,10 @@ from matplotlib import pyplot as plt
 
 pathname = "/Users/emmetshuman/Documents/CC Sophomore Folder/AppliedPY/Final project folder/GlobalLandTemperaturesByMajorCity.csv"
 
+cities = set(df.City)
+
+print(cities)
+
 def example1plot():
   df = pd.read_csv(pathname)
   print(df.columns)
