@@ -38,5 +38,22 @@ def Emmet():
 
 Emmet()
   
+city = ''
+# get yearly mean for desired country
+# want to get rid of years that don't have all 12 months
+def yearly_mean():
+    df = pd.read_csv(pathname2)
+    city = input("Which city would you like to plot?: ")
+    data = df[df['City'] == city]
+    df2 = (df.groupby(data['dt'].str[:4].rename('year'))['AverageTemperature']
+         .mean().reset_index())
+    x = df2["year"]
+    y = df2['AverageTemperature']
+    plt.scatter(x,y)
+    plt.xlabel('Date')
+    plt.ylabel('Temperature')
+    plt.title(f'Temperature Trends in {city}')
+    plt.show()
 
-
+while city != 'quit':
+    yearly_mean()
