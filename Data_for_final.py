@@ -1,4 +1,4 @@
-#Emmet Shuman
+
 #Final Project
 #Data Visualization
 #Prepping for race bar chart
