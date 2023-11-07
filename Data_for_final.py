@@ -18,6 +18,9 @@ cities = set(df.City)
 print(cities)
 
 #Okay here is a basic graph for whichever city we are interested in
+#Doesn't check city for bad inputs but it does make a little graph
+#Could benefit from the seasons being averaged.
+#We could do like 2023 winter and 2023 summer
 def Emmet():
     df = pd.read_csv(pathname)
     cities = set(df.City)
