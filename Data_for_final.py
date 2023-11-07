@@ -17,8 +17,23 @@ cities = set(df.City)
 
 print(cities)
 
-  
+#Okay here is a basic graph for whichever city we are interested in
 def Emmet():
+    df = pd.read_csv(pathname)
+    cities = set(df.City)
+
+    city = input("Which city would you like to plot?: ")
+    data = df[df['City'] == city]
+    x = data["dt"]
+    y = data["AverageTemperature"]
+
+    plt.scatter(x, y) 
+    plt.xlabel('Date')
+    plt.ylabel('Temperature')
+    plt.title(f'Temperature Trends in {city}')
+    plt.show()
+
+Emmet()
   
 
 
