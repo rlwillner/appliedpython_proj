@@ -110,7 +110,7 @@ def make_data():
          .mean().reset_index())
     data_city3.year = pd.to_numeric(data_city3.year)
     data_city3.rename(columns={'AverageTemperature': city3}, inplace=True)
-    data_city3 = data_city1.set_index(['year'])
+    data_city3 = data_city3.set_index(['year'])
     
     city4 = input("Which city would you like to plot?: ")
     data_city4 = df[df['City'] == city4].reset_index()
