@@ -124,7 +124,7 @@ def make_data():
     data_city5 = df[df['City'] == city5].reset_index()
     data_city5 = (data_city5.groupby(data_city5['dt'].str[:4].rename('year'))['AverageTemperature']
          .mean().reset_index())
-    data_city5.year = pd.to_numeric(data_city1.year)
+    data_city5.year = pd.to_numeric(data_city5.year)
     data_city5.rename(columns={'AverageTemperature': city5}, inplace=True)
     data_city5 = data_city5.set_index(['year'])
     
