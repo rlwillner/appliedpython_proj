@@ -138,7 +138,7 @@ def make_data():
 
     city7 = input("Which city would you like to plot?: ")
     data_city7 = df[df['City'] == city7].reset_index()
-    data_city7 = (data_city1.groupby(data_city7['dt'].str[:4].rename('year'))['AverageTemperature']
+    data_city7 = (data_city7.groupby(data_city7['dt'].str[:4].rename('year'))['AverageTemperature']
          .mean().reset_index())
     data_city7.year = pd.to_numeric(data_city7.year)
     data_city7.rename(columns={'AverageTemperature': city7}, inplace=True)
