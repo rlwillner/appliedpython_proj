@@ -38,22 +38,48 @@ def Emmet():
 
 Emmet()
   
-city = ''
-# get yearly mean for desired country
-# want to get rid of years that don't have all 12 months
+def is_nan(data):
+    nan_years = []
+    print(len(data))
+    data_array = data["AverageTemperature"].values
+    dt_array  = data["dt"].values
+    print(data_array.shape)
+    for i in range(len(data)):
+        if math.isnan(data_array[i]):
+            nan_years.append(int(dt_array[i][:4]))
+    nan_years = list(set(nan_years))
+    return nan_years
+
+
+
+
 def yearly_mean():
     df = pd.read_csv(pathname2)
     city = input("Which city would you like to plot?: ")
-    data = df[df['City'] == city]
-    df2 = (df.groupby(data['dt'].str[:4].rename('year'))['AverageTemperature']
+    data = df[df['City'] == city].reset_index()
+
+    df2 = (data.groupby(data['dt'].str[:4].rename('year'))['AverageTemperature']
          .mean().reset_index())
-    x = df2["year"]
-    y = df2['AverageTemperature']
+    df2.year = pd.to_numeric(df2.year)
+    df3 = df2.dropna().reset_index(drop=True)
+    
+    nan_years = is_nan(data)
+    print(type(nan_years[0]))
+    print(type(df3.year.values[0]))
+
+    df3 = df3[~df3.year.isin(nan_years)]
+    print(df3)
+
+    x = df3["year"]
+
+    y = df3['AverageTemperature']
     plt.scatter(x,y)
     plt.xlabel('Date')
     plt.ylabel('Temperature')
     plt.title(f'Temperature Trends in {city}')
     plt.show()
+
+
 
 while city != 'quit':
     yearly_mean()
