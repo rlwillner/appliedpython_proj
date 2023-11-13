@@ -59,6 +59,10 @@ def yearly_mean():
 
     sb.regplot(x=df2["year"], y=df2["AverageTemperature"], fit_reg=True)
 
+    slope, intercept, rvalue, pvalue, stderr = stats.linregress(df2["year"], df2["AverageTemperature"])
+
+    plt.text( 1920 , min(df2["AverageTemperature"]), 'y = ' + str(round(intercept,3)) + ' + ' + str(round(slope,3)) + 'x')
+
     plt.show()
 
 while city != 'quit':
