@@ -77,6 +77,9 @@ def yearly_mean():
     plt.xlabel('Date')
     plt.ylabel('Temperature')
     plt.title(f'Temperature Trends in {city}')
+    z = np.polyfit(x, y, 1)
+    fit = np.poly1d(z)
+    plt.plot(x,fit(x),"r--")
     plt.show()
 
 
