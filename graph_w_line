@@ -1,0 +1,65 @@
+import pandas as pd
+import numpy as np
+from matplotlib import pyplot as plt
+import math
+import seaborn as sb
+
+# import bar_chart_race as bcr
+
+
+pathname2 = '/Users/rebecca/Documents/code/appliedpython/project/GlobalLandTemperaturesByMajorCity.csv'
+pathname = "/Users/emmetshuman/Documents/CC Sophomore Folder/AppliedPY/Final project folder/GlobalLandTemperaturesByMajorCity.csv"
+df = pd.read_csv(pathname2)
+
+cities = set(df.City)
+
+print(cities)
+
+city = ''
+
+def is_nan(data):
+    nan_years = []
+    print(len(data))
+    data_array = data["AverageTemperature"].values
+    dt_array  = data["dt"].values
+    for i in range(len(data)):
+        if math.isnan(data_array[i]):
+            nan_years.append(int(dt_array[i][:4]))
+    nan_years = list(set(nan_years))
+    return nan_years
+
+def yearly_mean():
+    df = pd.read_csv(pathname2)
+    city = input("Which city would you like to plot?: ")
+    # dataframe of desired city
+    data = df[df['City'] == city].reset_index()
+    # changes datetime to average for the year
+    df2 = (data.groupby(data['dt'].str[:4].rename('year'))['AverageTemperature']
+         .mean().reset_index())
+    # all years are ints
+    df2.year = pd.to_numeric(df2.year)
+
+    # df3 = df2.dropna().reset_index(drop=True)
+    
+    nan_years = is_nan(data)
+    # print(type(nan_years[0]))
+    # print(type(df3.year.values[0]))
+    # take out rows of years in nan_years list
+    df2 = df2[~df2.year.isin(nan_years)]
+    # print(df3)
+
+    # PLOTTING
+    # x = df2["year"]
+    # y = df2['AverageTemperature']
+    # plt.scatter(x,y)
+    # plt.xlabel('Date')
+    # plt.ylabel('Temperature')
+    # plt.title(f'Temperature Trends in {city}')
+    # plt.show()
+
+    sb.regplot(x=df2["year"], y=df2["AverageTemperature"], fit_reg=True)
+
+    plt.show()
+
+while city != 'quit':
+    yearly_mean()
