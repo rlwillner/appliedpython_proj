@@ -276,5 +276,25 @@ def race_bar_chart():
       interpolate_period=False,
       label_bars=True,
       bar_size=.95)
+race_bar_chart()
+
+def race_bar_chart(): 
+  all = make_data()
+  print(all) 
+  bcr.bar_chart_race(
+      df= all,
+      filename=pathname,
+      orientation='h',
+      sort='desc',
+      n_bars=6,
+      fixed_order=False,
+      fixed_max=True,
+      steps_per_period=10,
+      interpolate_period=False,
+      label_bars=True,
+      bar_size=.95,
+      perpendicular_bar_func='median',
+      title = "Average Temperature for major cities since 1743")
+  
 
 race_bar_chart()
