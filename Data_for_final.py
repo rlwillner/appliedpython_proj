@@ -294,7 +294,7 @@ def race_bar_chart():
       label_bars=True,
       bar_size=.95,
       perpendicular_bar_func='median',
-      title = "Average Temperature for major cities since 1743")
+      title = "Average Temperature for Major Cities since 1743")
   
 
 race_bar_chart()
